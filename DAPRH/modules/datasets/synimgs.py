@@ -13,8 +13,8 @@ ndict = {
     'dukemtmc':'DukeMTMC-reID',
     'market1501': 'Market-1501-v15.09.15',
 
-    # 'dukemtmc-fake':'duke2mark-results',
-    'dukemtmc-fake':'duke2msmt-results',
+    'dukemtmc-fake':'duke2market-results',
+    # 'dukemtmc-fake':'duke2msmt-results',
     # 'market1501-fake': 'mark2duke-results',
     'market1501-fake': 'mark2msmt-results',
 

@@ -59,7 +59,8 @@ def pairwise_distance(features, query=None, gallery=None, metric=None):
         y = metric.transform(y)
     dist_m = torch.pow(x, 2).sum(dim=1, keepdim=True).expand(m, n) + \
            torch.pow(y, 2).sum(dim=1, keepdim=True).expand(n, m).t()
-    dist_m.addmm_(1, -2, x, y.t())
+    # dist_m.addmm_(1, -2, x, y.t())
+    dist_m.addmm_(x, y.t(), beta=1, alpha=-2)
     return dist_m, x.numpy(), y.numpy()
 
 def evaluate_all(query_features, gallery_features, distmat, query=None, gallery=None,
@@ -119,6 +120,7 @@ class Evaluator(object):
             features = pre_features
         # print(features)
         # print(query)
+        print("Evaluating...")
         
         distmat, query_features, gallery_features = pairwise_distance(features, query, gallery, metric=metric)
         results = evaluate_all(query_features, gallery_features, distmat, 

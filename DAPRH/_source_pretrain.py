@@ -26,6 +26,9 @@ from modules.utils.serialization import load_checkpoint, save_checkpoint, copy_s
 from modules.utils.lr_scheduler import WarmupMultiStepLR
 import time
 
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2,3"
+
 # haha - 1 #it none sense ::)))
 
 logger = Logger()

@@ -471,3 +471,4 @@ cython_debug/
 # project specific
 logs/*
 data/*
+saves/

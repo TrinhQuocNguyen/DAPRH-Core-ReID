@@ -327,7 +327,7 @@ class Solver(object):
                     for c_fixed in c_fixed_list:
                         x_fake_list.append(self.G(x_fixed, c_fixed))
                     x_concat = torch.cat(x_fake_list, dim=3)
-                    sample_path = os.path.join(self.log_dir, '{}-images.jpg'.format(i+1))
+                    sample_path = os.path.join(self.sample_dir, '{}-images.jpg'.format(i+1))
                     save_image(self.denorm(x_concat.data.cpu()), sample_path, nrow=1, padding=0)
                     print('Saved real and fake images into {}...'.format(sample_path))
 
@@ -509,7 +509,7 @@ class Solver(object):
                         c_trg = torch.cat([zero_celeba, c_fixed, mask_rafd], dim=1)
                         x_fake_list.append(self.G(x_fixed, c_trg))
                     x_concat = torch.cat(x_fake_list, dim=3)
-                    sample_path = os.path.join(self.log_dir, '{}-images.jpg'.format(i+1))
+                    sample_path = os.path.join(self.sample_dir, '{}-images.jpg'.format(i+1))
                     save_image(self.denorm(x_concat.data.cpu()), sample_path, nrow=1, padding=0)
                     print('Saved real and fake images into {}...'.format(sample_path))
 
@@ -612,7 +612,7 @@ class Solver(object):
                 x_fake_list = []
                 for ii, c_fixed in enumerate(c_fixed_list):
                     if self.except_domain == ii : continue
-                    if random.uniform(0, 1) >= self.prob: continue
+                    # if random.uniform(0, 1) >= self.prob: continue
                     x_fake_list=self.G(x_fixed, c_fixed)
                     # x_fake_list.append(self.G(x_fixed, c_fixed))
                     x_concat = x_fake_list #torch.cat(x_fake_list, dim=3)
